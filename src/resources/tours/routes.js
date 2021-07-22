@@ -23,20 +23,21 @@ let Tours = [
   },
 ];
 
-// Innitialising my Brewery Router
-const BreweryRouter = express.Router();
-BreweryRouter.get('/', (req, res) => {
-  const type = req.query.brewery_type;
+// Innitialising my Tours Router
+const ToursRouter = express.Router();
 
-  if (type) {
-    const breweryToShow = Breweries.filter(
-      (brewery) => brewery.brewery_type === type
-    );
-    const response = breweryToShow.length
-      ? breweryToShow
-      : `Can't find a breweries with that type.`;
-    res.json({ breweries: response });
+ToursRouter.get('/', (req, res) => {
+  const date = req.query.date;
+
+  if (date) {
+    const toursToShow = Tours.filter((tour) => tour.date === date);
+    const response = toursToShow.length
+      ? toursToShow
+      : `Can't find a Tours with that date.`;
+    res.json({ Tours: response });
   } else {
-    res.json({ breweries: Breweries, timestamp: Date.now() });
+    res.json({ Tours: Tours, timestamp: Date.now() });
   }
 });
+
+module.exports = ToursRouter;

@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const BreweryRouter = require('./resources/breweries/routes');
+const ToursRouter = require('./resources/tours/routes');
+
 // Initialising server
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(express.json());
 
 // Routes
 app.use('/breweries', BreweryRouter);
+
+app.use('/tours', ToursRouter);
 
 // Port
 const port = 4000;
