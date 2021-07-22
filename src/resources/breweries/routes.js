@@ -2,7 +2,7 @@
 const express = require('express');
 
 // Data
-const Breweries = [
+let Breweries = [
   {
     id: 9094,
     obdb_id: 'bnaf-llc-austin',
@@ -187,8 +187,9 @@ const Breweries = [
 // Innitialising my Brewery Router
 const BreweryRouter = express.Router();
 
-// routes
+// Routes
 
+// Get brewery and by type
 BreweryRouter.get('/', (req, res) => {
   const type = req.query.brewery_type;
 
@@ -203,6 +204,14 @@ BreweryRouter.get('/', (req, res) => {
   } else {
     res.json({ breweries: Breweries, timestamp: Date.now() });
   }
+});
+
+// Create a new brewery
+BreweryRouter.post('/', (req, res) => {
+  const newBrewery = req.body;
+  Breweries = [...Breweries, newBrewery];
+
+  res.json({ Breweries: newBrewery });
 });
 
 module.exports = BreweryRouter;
