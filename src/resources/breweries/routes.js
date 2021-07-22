@@ -190,7 +190,19 @@ const BreweryRouter = express.Router();
 // routes
 
 BreweryRouter.get('/', (req, res) => {
-  res.json(Breweries);
+  const type = req.query.brewery_type;
+
+  if (type) {
+    const breweryToShow = Breweries.filter(
+      (brewery) => brewery.brewery_type === type
+    );
+    const response = breweryToShow.length
+      ? breweryToShow
+      : `Can't find a breweries with that type.`;
+    res.json({ breweries: response });
+  } else {
+    res.json({ breweries: Breweries, timestamp: Date.now() });
+  }
 });
 
 module.exports = BreweryRouter;
