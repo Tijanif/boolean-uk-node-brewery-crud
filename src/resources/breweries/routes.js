@@ -220,4 +220,17 @@ BreweryRouter.post('/', (req, res) => {
   res.json({ Breweries: newBrewery });
 });
 
+// Deleting a brewery
+
+BreweryRouter.delete('/:id', (req, res) => {
+  const breweryId = Number(req.params.id);
+  const foundBrewery = Breweries.find((brewery) => brewery.id === breweryId);
+  if (foundBrewery) {
+    Breweries.splice(foundBrewery, 1);
+    res.json({ foundBrewery });
+  } else {
+    res.status(400).json('Brewery not Found');
+  }
+});
+
 module.exports = BreweryRouter;
