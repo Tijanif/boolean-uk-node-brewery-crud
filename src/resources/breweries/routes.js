@@ -221,7 +221,6 @@ BreweryRouter.post('/', (req, res) => {
 });
 
 // Deleting a brewery
-
 BreweryRouter.delete('/:id', (req, res) => {
   const breweryId = Number(req.params.id);
   const foundBrewery = Breweries.find((brewery) => brewery.id === breweryId);
