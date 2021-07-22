@@ -1,8 +1,12 @@
 // Imports
 const express = require('express');
+const morgan = require('morgan');
 
 // Initialising server
 const app = express();
+
+// Middleware
+app.use(morgan('dev'));
 
 // Port
 const port = 4000;
