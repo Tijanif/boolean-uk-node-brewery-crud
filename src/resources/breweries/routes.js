@@ -206,6 +206,12 @@ BreweryRouter.get('/', (req, res) => {
   }
 });
 
+// Getting a single brewery
+BreweryRouter.get('/:id', (req, res) => {
+  const breweryId = Number(req.params.id);
+  const brewery = Breweries.find((brewery) => brewery.id === breweryId);
+  res.json({ brewery });
+});
 // Create a new brewery
 BreweryRouter.post('/', (req, res) => {
   const newBrewery = req.body;
