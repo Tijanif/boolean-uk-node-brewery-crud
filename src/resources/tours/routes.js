@@ -26,6 +26,7 @@ let Tours = [
 // Innitialising my Tours Router
 const ToursRouter = express.Router();
 
+// Getting tours by date or all tours
 ToursRouter.get('/', (req, res) => {
   const date = req.query.date;
 
@@ -38,6 +39,14 @@ ToursRouter.get('/', (req, res) => {
   } else {
     res.json({ Tours: Tours, timestamp: Date.now() });
   }
+});
+
+// Getting a single Tour
+ToursRouter.get('/:id', (req, res) => {
+  const TourId = Number(req.params.id);
+  const tourToShow = Tours.find((tour) => tour.id === TourId);
+
+  res.json({ tourToShow });
 });
 
 module.exports = ToursRouter;
